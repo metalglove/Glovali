@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
+    <Authors>Metalglove</Authors>
+    <Description>The base common.rest layer of Glovali framework.</Description>
+    <RepositoryUrl>https://github.com/metalglove/Glovali</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/metalglove/Glovali</PackageProjectUrl>
+    <PackageTags>metalglove glovali core cross platform</PackageTags>
+    <PackageReleaseNotes>The base common.rest layer of Glovali framework.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

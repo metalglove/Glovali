@@ -2,10 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <Authors>Mario Lucassen</Authors>
+    <Authors>Metalglove</Authors>
     <Company />
     <Product>Glovali.Common.Persistence.EFCore</Product>
-    <Description>A cross-platform base framework useful for all projects that use .NET Core.</Description>
+    <Description>The base common.persistence.efcore layer of Glovali framework</Description>
+    <PackageReleaseNotes>The base common.persistence.efcore layer of Glovali framework</PackageReleaseNotes>
+    <PackageTags>metalglove glovali core cross platform</PackageTags>
+    <RepositoryUrl>https://github.com/metalglove/Glovali</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/metalglove/Glovali</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

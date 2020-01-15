@@ -1,6 +1,6 @@
 ﻿using Glovali.Common.Application.Interfaces;
 using Glovali.Common.Domain;
-using Glovali.Common.Exceptions;
+using Glovali.Common.Persistence.Exceptions;
 using Glovali.Common.Persistence.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;

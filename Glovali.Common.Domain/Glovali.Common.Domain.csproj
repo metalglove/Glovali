@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <Authors>Metalglove</Authors>
+    <Company />
+    <Description>The base common.domain layer of Glovali framework.
+</Description>
+    <PackageProjectUrl>https://github.com/metalglove/Glovali</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/metalglove/Glovali</RepositoryUrl>
+    <PackageTags>metalglove glovali core cross platform</PackageTags>
+    <PackageReleaseNotes>The base common.application layer of Glovali framework.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

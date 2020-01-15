@@ -3,6 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>8</LangVersion>
+    <Authors>Metalglove</Authors>
+    <Description>The base common layer of Glovali framework.</Description>
+    <PackageProjectUrl>https://github.com/metalglove/Glovali</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/metalglove/Glovali</RepositoryUrl>
+    <PackageTags>metalglove glovali core cross platform</PackageTags>
+    <PackageReleaseNotes>The base common layer of Glovali framework.</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

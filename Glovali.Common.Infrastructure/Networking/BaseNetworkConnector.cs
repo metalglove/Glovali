@@ -1,5 +1,5 @@
 ﻿using Glovali.Common.Application.Interfaces;
-using Glovali.Common.Exceptions;
+using Glovali.Common.Infrastructure.Exceptions;
 using Glovali.Common.Infrastructure.Messaging;
 using Glovali.Common.Messages.Interfaces;
 using System;
