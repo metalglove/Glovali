@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glovali.Common.Persistence.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glovali.Common.Rest", "Glovali.Common.Rest\Glovali.Common.Rest.csproj", "{5F1252C1-63CB-4782-9FC6-B97FFB08778D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glovali.Tests", "Glovali.Tests\Glovali.Tests.csproj", "{86CB9D01-C852-4EFB-BB2C-980A20C1712F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{5F1252C1-63CB-4782-9FC6-B97FFB08778D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F1252C1-63CB-4782-9FC6-B97FFB08778D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F1252C1-63CB-4782-9FC6-B97FFB08778D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86CB9D01-C852-4EFB-BB2C-980A20C1712F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86CB9D01-C852-4EFB-BB2C-980A20C1712F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86CB9D01-C852-4EFB-BB2C-980A20C1712F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86CB9D01-C852-4EFB-BB2C-980A20C1712F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

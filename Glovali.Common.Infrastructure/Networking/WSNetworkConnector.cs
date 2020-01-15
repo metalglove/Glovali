@@ -85,26 +85,12 @@ namespace Glovali.Common.Infrastructure.Networking
             string secWebsocketAccept = string.Empty;
             using (StreamReader reader = new StreamReader(_networkStream, Encoding.UTF8, detectEncodingFromByteOrderMarks: false, bufferSize: 1, leaveOpen: true))
             {
-                //// Read client handshake "Request-Line" format.
-                //string requestLine = await reader.ReadLineAsync();
-                //if (!requestLine.Equals($"GET /{_protocol} HTTP/1.1"))
-                //{
-                //    Debug.WriteLine("Request-Line was not valid.");
-                //    Dispose();
-                //    return;
-                //}
-
+                string line;
                 Regex secWebsocketKeyRegex = new Regex("Sec-WebSocket-Key: (.*)");
                 Regex secWebsocketProtocolRegex = new Regex("Sec-WebSocket-Protocol: (.*)");
                 do
                 {
-                    string line = await reader.ReadLineAsync();
-                    if (string.IsNullOrEmpty(line))
-                    {
-                        Debug.WriteLine("Either the Sec-WebSocket-Protocol or Sec-WebSocket-Key was not found.");
-                        Dispose();
-                        return;
-                    }
+                    line = await reader.ReadLineAsync();
                     Match keyMatch = secWebsocketKeyRegex.Match(line);
                     Match protocolMatch = secWebsocketProtocolRegex.Match(line);
                     if (keyMatch.Success)
@@ -116,13 +102,13 @@ namespace Glovali.Common.Infrastructure.Networking
                     }
                     else if (protocolMatch.Success)
                     {
-                        if (keyMatch.Groups[1].Value.Split(',').Contains(_protocol)) continue;
+                        if (protocolMatch.Groups[1].Value.Split(',').Contains(_protocol)) continue;
                         Debug.WriteLine("Sec-WebSocket-Protocol is invalid.");
                         Dispose();
                         return;
                     }
                 }
-                while (string.IsNullOrEmpty(_protocol) && string.IsNullOrEmpty(secWebsocketAccept));
+                while (!string.IsNullOrEmpty(line));
             }
 
             if (string.IsNullOrEmpty(secWebsocketAccept))

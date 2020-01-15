@@ -9,6 +9,7 @@
     <PackageProjectUrl>https://github.com/metalglove/Glovali</PackageProjectUrl>
     <RepositoryUrl>https://github.com/metalglove/Glovali</RepositoryUrl>
     <PackageTags>metalglove glovali core cross platform</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

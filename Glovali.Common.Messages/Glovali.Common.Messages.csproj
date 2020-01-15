@@ -8,6 +8,7 @@
     <RepositoryUrl>https://github.com/metalglove/Glovali</RepositoryUrl>
     <PackageTags>metalglove glovali core cross platform</PackageTags>
     <PackageReleaseNotes>The base common.messages layer of Glovali framework.</PackageReleaseNotes>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
 </Project>

@@ -9,21 +9,21 @@ namespace Glovali.Common.Messages.Abstractions
     public abstract class Response : IResponseMessage
     {
         /// <inheritdoc cref="IMessage.Id"/>
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
 
         /// <inheritdoc cref="IResponseMessage.DateTime"/>
-        public DateTime DateTime { get; private set; }
+        public DateTime DateTime { get; set; }
 
         /// <inheritdoc cref="IResponseMessage.RequestId"/>
-        public Guid RequestId { get; private set; }
+        public Guid RequestId { get; set; }
 
         /// <inheritdoc cref="IResponseMessage.Success"/>
-        public bool Success { get; private set; }
+        public bool Success { get; set; }
 
         /// <summary>
         /// Gets and sets the message.
         /// </summary>
-        public string Message { get; protected set; }
+        public string Message { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Response"/> class.
