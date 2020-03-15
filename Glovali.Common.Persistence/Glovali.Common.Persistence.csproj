@@ -8,6 +8,8 @@
     <RepositoryUrl>https://github.com/metalglove/Glovali</RepositoryUrl>
     <PackageTags>metalglove glovali core cross platform</PackageTags>
     <PackageReleaseNotes>The base common.persistence layer of Glovali framework.</PackageReleaseNotes>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>

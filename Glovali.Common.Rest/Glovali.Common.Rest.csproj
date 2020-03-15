@@ -8,6 +8,9 @@
     <PackageProjectUrl>https://github.com/metalglove/Glovali</PackageProjectUrl>
     <PackageTags>metalglove glovali core cross platform</PackageTags>
     <PackageReleaseNotes>The base common.rest layer of Glovali framework.</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

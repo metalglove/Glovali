@@ -10,6 +10,8 @@
     <PackageTags>metalglove glovali core cross platform</PackageTags>
     <RepositoryUrl>https://github.com/metalglove/Glovali</RepositoryUrl>
     <PackageProjectUrl>https://github.com/metalglove/Glovali</PackageProjectUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
