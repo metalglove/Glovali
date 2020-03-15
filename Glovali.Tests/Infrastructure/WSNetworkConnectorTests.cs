@@ -66,7 +66,7 @@ namespace Glovali.Tests.Infrastructure
             Console.WriteLine("Starting listener...");
             TcpListener tcpListener = new TcpListener(IPAddress.Loopback, port);
             tcpListener.Start();
-            Console.WriteLine("Stared listener!");
+            Console.WriteLine("Started listener!");
             while (!cancellationToken.IsCancellationRequested)
             {
                 Console.WriteLine("Awaiting new connection...");

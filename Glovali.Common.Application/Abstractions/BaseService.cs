@@ -8,54 +8,55 @@ using System.Threading.Tasks;
 namespace Glovali.Common.Application.Abstractions
 {
     /// <summary>
-    /// Represents the <see cref="BaseService{TEntity,TDto}"/> class.
+    /// Represents the <see cref="BaseService{TEntity, TDto, TId}"/> class.
     /// </summary>
     /// <typeparam name="TEntity">The entity type.</typeparam>
     /// <typeparam name="TDto">The dto type.</typeparam>
-    public abstract class BaseService<TEntity, TDto> : IService<TDto> where TDto : class where TEntity : class, IEntity
+    /// <typeparam name="TId">The dto id type.</typeparam>
+    public abstract class BaseService<TEntity, TDto, TId> : IService<TDto, TId> where TDto : class where TEntity : class, IEntity<TId>
     {
         protected readonly IMapper Mapper;
-        protected readonly IRepository<TEntity> EntityRepository;
+        protected readonly IRepository<TEntity, TId> EntityRepository;
 
         /// <summary>
-        /// Initializes an instance of the <see cref="BaseService{TEntity,TDto}"/> class.
+        /// Initializes an instance of the <see cref="BaseService{TEntity, TDto, TId}"/> class.
         /// </summary>
         /// <param name="entityRepository">The entity repository.</param>
         /// <param name="mapper">The mapper.</param>
-        protected BaseService(IRepository<TEntity> entityRepository, IMapper mapper)
+        protected BaseService(IRepository<TEntity, TId> entityRepository, IMapper mapper)
         {
             Mapper = mapper;
             EntityRepository = entityRepository;
         }
 
-        /// <inheritdoc cref="IService{TEntity}.FindSingleOrDefaultAsync(Guid)"/>
-        public virtual Task<TDto> FindSingleOrDefaultAsync(Guid id)
+        /// <inheritdoc cref="IService{TEntity, TId}.FindSingleOrDefaultAsync(TId)"/>
+        public virtual Task<TDto> FindSingleOrDefaultAsync(TId id)
         {
-            return EntityRepository.FindSingleOrDefaultAsync(tr => tr.Id == id)
+            return EntityRepository.FindSingleOrDefaultAsync(tr => tr.Id.Equals(id))
                 .ContinueWith(trainingRoom => Mapper.Map<TDto>(trainingRoom.Result));
         }
 
-        /// <inheritdoc cref="IService{TEntity}.GetAllAsync()"/>
+        /// <inheritdoc cref="IService{TEntity, TId}.GetAllAsync()"/>
         public virtual Task<IEnumerable<TDto>> GetAllAsync()
         {
             return EntityRepository.GetAllAsync()
                 .ContinueWith(entities => Mapper.Map<IEnumerable<TDto>>(entities.Result));
         }
 
-        /// <inheritdoc cref="IService{TEntity}.CountAsync()"/>
+        /// <inheritdoc cref="IService{TEntity, TId}.CountAsync()"/>
         public virtual Task<int> CountAsync()
         {
             return EntityRepository.CountAsync();
         }
 
-        /// <inheritdoc cref="IService{TEntity}.GetPaginationAsync(int, int)"/>
+        /// <inheritdoc cref="IService{TEntity, TId}.GetPaginationAsync(int, int)"/>
         public virtual Task<IEnumerable<TDto>> GetPaginationAsync(int pageNumber, int pageSize)
         {
             return EntityRepository.GetPaginationAsync(pageNumber, pageSize)
                 .ContinueWith(entities => Mapper.Map<IEnumerable<TDto>>(entities.Result));
         }
 
-        /// <inheritdoc cref="IService{TEntity}.DeleteAsync(TEntity)"/>
+        /// <inheritdoc cref="IService{TEntity, TId}.DeleteAsync(TEntity)"/>
         public virtual async Task<(bool success, bool found)> DeleteAsync(TDto dto)
         {
             TEntity entity = Mapper.Map<TEntity>(dto);
@@ -63,15 +64,15 @@ namespace Glovali.Common.Application.Abstractions
             return !found ? (false, false) : (await EntityRepository.DeleteAsync(entity), true);
         }
 
-        /// <inheritdoc cref="IService{TEntity}.UpdateAsync(TEntity)"/>
-        public virtual Task<(bool success, Guid id, bool updated)> UpdateAsync(TDto dto)
+        /// <inheritdoc cref="IService{TEntity, TId}.UpdateAsync(TEntity)"/>
+        public virtual Task<(bool success, TId id, bool updated)> UpdateAsync(TDto dto)
         {
             TEntity entity = Mapper.Map<TEntity>(dto);
             return EntityRepository.UpdateAsync(entity);
         }
 
-        /// <inheritdoc cref="IService{TEntity}.CreateAsync(TEntity)"/>
-        public virtual Task<(bool success, Guid id)> CreateAsync(TDto dto)
+        /// <inheritdoc cref="IService{TEntity, TId}.CreateAsync(TEntity)"/>
+        public virtual Task<(bool success, TId id)> CreateAsync(TDto dto)
         {
             TEntity entity = Mapper.Map<TEntity>(dto);
             return EntityRepository.CreateAsync(entity);

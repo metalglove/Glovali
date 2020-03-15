@@ -6,7 +6,7 @@ namespace Glovali.Common.Persistence.Interfaces
     /// Represents the <see cref="IEntityValidator{T}"/> interface.
     /// </summary>
     /// <typeparam name="T">The Entity to validate.</typeparam>
-    public interface IEntityValidator<in T> where T : IEntity
+    public interface IEntityValidator<in T, in TId> where T : IEntity<TId>
     {
         /// <summary>
         /// Validates the provided Entity.

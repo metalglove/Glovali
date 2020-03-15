@@ -14,16 +14,17 @@ namespace Glovali.Common.Rest
     /// The abstract implementation of a rest api controller.
     /// </summary>
     /// <typeparam name="TDto">The dto type.</typeparam>
+    /// <typeparam name="TId">The dto id type.</typeparam>
     [AllowAnonymous, ApiController, Route("[controller]")]
-    public abstract class RestController<TDto> : ControllerBase where TDto : class
+    public abstract class RestController<TDto, TId> : ControllerBase where TDto : class
     {
-        private readonly IService<TDto> _service;
+        private readonly IService<TDto, TId> _service;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RestController{TDto}"/> class.
         /// </summary>
         /// <param name="service">The service.</param>
-        protected RestController(IService<TDto> service)
+        protected RestController(IService<TDto, TId> service)
         {
             _service = service;
         }
@@ -33,10 +34,10 @@ namespace Glovali.Common.Rest
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns>Returns the dto if found with OK status code else NotFound status code.</returns>
-        [HttpGet("{id:guid}")]
+        [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public virtual async Task<IActionResult> GetAsync(Guid id)
+        public virtual async Task<IActionResult> GetAsync(TId id)
         {
             TDto dto = await _service.FindSingleOrDefaultAsync(id);
             return dto is null ? (IActionResult)new NotFoundResult() : new OkObjectResult(dto);
@@ -92,7 +93,7 @@ namespace Glovali.Common.Rest
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
-            (bool success, Guid id, bool updated) = await _service.UpdateAsync(dto);
+            (bool success, TId id, bool updated) = await _service.UpdateAsync(dto);
             if (!success)
                 return new ConflictResult();
             if (!updated)
@@ -141,7 +142,7 @@ namespace Glovali.Common.Rest
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
-            (bool success, Guid id) = await _service.CreateAsync(dto);
+            (bool success, TId id) = await _service.CreateAsync(dto);
             return success
                 ? new CreatedAtRouteResult(new { id }, dto)
                 : (IActionResult)new StatusCodeResult((int)HttpStatusCode.InternalServerError);

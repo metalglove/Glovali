@@ -1,15 +1,14 @@
-﻿using System;
-
-namespace Glovali.Common.Domain
+﻿namespace Glovali.Common.Domain
 {
     /// <summary>
-    /// Represents the <see cref="IEntity"/> interface.
+    /// Represents the <see cref="IEntity{TId}"/> interface.
     /// </summary>
-    public interface IEntity
+    /// <typeparam name="TId">The entity id type.</typeparam>
+    public interface IEntity<TId>
     {
         /// <summary>
         /// Gets and sets the id.
         /// </summary>
-        Guid Id { get; }
+        TId Id { get; }
     }
 }

@@ -1,21 +1,21 @@
-﻿using Glovali.Common.Exceptions;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Glovali.Common.Application.Interfaces
 {
     /// <summary>
-    /// Represents the <see cref="IService{TDto}"/> interface.
+    /// Represents the <see cref="IService{TDto, TId}"/> interface.
     /// </summary>
-    public interface IService<TDto> where TDto : class
+    /// <typeparam name="TDto">The dto type.</typeparam>
+    /// <typeparam name="TId">The dto id type.</typeparam>
+    public interface IService<TDto, TId> where TDto : class
     {
         /// <summary>
         /// Finds a single dto by id.
         /// </summary>
         /// <param name="id">The id.</param>
         /// <returns>Returns the dto by id.</returns>
-        Task<TDto> FindSingleOrDefaultAsync(Guid id);
+        Task<TDto> FindSingleOrDefaultAsync(TId id);
 
         /// <summary>
         /// Gets all records as dtos.
@@ -56,11 +56,11 @@ namespace Glovali.Common.Application.Interfaces
         /// <param name="dto">The dto.</param>
         /// <exception cref="UpdatingEntityFailedException">If it fails to the save changes.</exception>
         /// <returns>
-        /// Returns (<c>true</c>, <see cref="Guid"/>, <c>false</c>) If the dto is successfully updated or
-        /// (<c>true</c>, <see cref="Guid"/>, <c>true</c>) when instead of updating it created a new dto, otherwise
-        /// (<c>false</c>, <see cref="Guid"/>, <c>false</c>) if it fails to update.
+        /// Returns (<c>true</c>, <see cref="TId"/>, <c>false</c>) If the dto is successfully updated or
+        /// (<c>true</c>, <see cref="TId"/>, <c>true</c>) when instead of updating it created a new dto, otherwise
+        /// (<c>false</c>, <see cref="TId"/>, <c>false</c>) if it fails to update.
         /// </returns>
-        Task<(bool success, Guid id, bool updated)> UpdateAsync(TDto dto);
+        Task<(bool success, TId id, bool updated)> UpdateAsync(TDto dto);
 
         /// <summary>
         /// Creates the provided dto.
@@ -68,9 +68,9 @@ namespace Glovali.Common.Application.Interfaces
         /// <param name="dto">The dto.</param>
         /// <exception cref="CreatingEntityFailedException">If it fails to the save changes.</exception>
         /// <returns>
-        /// Returns (<c>true</c>, <see cref="Guid"/>) If the dto is successfully created;
-        /// otherwise, (<c>false</c>, <see cref="Guid"/>).
+        /// Returns (<c>true</c>, <see cref="TId"/>) If the dto is successfully created;
+        /// otherwise, (<c>false</c>, <see cref="TId"/>).
         /// </returns>
-        Task<(bool success, Guid id)> CreateAsync(TDto dto);
+        Task<(bool success, TId id)> CreateAsync(TDto dto);
     }
 }
